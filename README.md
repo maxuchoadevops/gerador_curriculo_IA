@@ -1,5 +1,4 @@
-# ⚡ AI Tech Resume Generator + ATS Analyzer
-> **Desenvolvedora:** Ingrid Farias  
+# ⚡ AI Tech Resume Generator + ATS Analyzer 
 > **Assistente de IA:** PETER (Personal Expert Tech Entity & Resume-analyst)
 
 ---
