@@ -1,0 +1,344 @@
+/* GERADOR DE CURRÍCULO PROFISSIONAL 
+    Desenvolvedora: Ingrid Farias
+    Assistente: PETER
+*/
+
+/* CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+:root {
+    --dark-bg: #121212;
+    --editor-bg: #1e1e1e;
+    --accent: #00adb5;
+    --ai-accent: #00ffcc;
+    --ai-gradient: linear-gradient(45deg, #6a11cb, #2575fc);
+    --text-light: #e0e0e0;
+    --input-bg: #2c2c2c;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* LAYOUT PRINCIPAL */
+.main-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* PAINEL DO EDITOR (ESQUERDA) */
+.editor-panel {
+    width: 35%;
+    background: var(--editor-bg);
+    padding: 25px;
+    border-right: 1px solid #333;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main-title {
+    font-size: 1.4rem;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* GRUPO DE BOTÕES E IA */
+.action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ai-button {
+    background: var(--ai-gradient) !important;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    color: white;
+}
+
+.action-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.ai-button:hover {
+    box-shadow: 0 0 15px rgba(37, 117, 252, 0.6);
+}
+
+/* PAINEL DO PETER (ESQUERDA) */
+.ai-feedback-container {
+    background: #1a1a2e;
+    border: 1px solid var(--ai-accent);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.1);
+}
+
+.ai-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.ai-title {
+    color: var(--ai-accent);
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.ai-content {
+    color: #e0e0e0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Texto de "Scanning" animado */
+.scanning-text {
+    color: var(--ai-accent);
+    font-family: 'Courier New', Courier, monospace;
+    border-right: 2px solid var(--ai-accent);
+    white-space: nowrap;
+    overflow: hidden;
+    width: fit-content;
+    animation: typing 3s steps(30, end) infinite, blink 0.5s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: var(--ai-accent)
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* INPUTS E SEÇÕES DO EDITOR */
+.editor-section h2 {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: #bbb;
+}
+
+input,
+textarea {
+    background: var(--input-bg);
+    border: 1px solid #444;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: border 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* PAINEL DE VISUALIZAÇÃO (DIREITA) */
+.preview-panel {
+    width: 65%;
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+
+/* ESTILIZAÇÃO DA FOLHA A4 (RESPEITANDO MARGENS DE IMPRESSÃO) */
+.a4-page {
+    background: white;
+    color: #222;
+    width: 210mm;
+    min-height: 297mm;
+    height: auto;
+    padding: 25mm;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
+}
+
+.candidate-name {
+    font-size: 24pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.contact-info {
+    font-size: 10pt;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.job-title-container {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.job-title-text {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #222;
+}
+
+.section-title {
+    font-size: 12pt;
+    font-weight: bold;
+    border-bottom: 2px solid #222;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+}
+
+/* ESTILO DA LISTA JUSTIFICADA */
+.list-style {
+    padding-left: 20px;
+    list-style-position: outside;
+}
+
+.list-style li {
+    font-size: 10.5pt;
+    margin-bottom: 10px;
+    color: #333;
+    line-height: 1.4;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: none !important;
+}
+
+/* RESPONSIVIDADE PARA TELAS PEQUENAS */
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .editor-panel,
+    .preview-panel {
+        width: 100% !important;
+    }
+
+    .a4-page {
+        width: 95% !important;
+        padding: 15mm !important;
+    }
+}
+
+/* REGRAS DE IMPRESSÃO (PDF) */
+@media print {
+
+    html,
+    body {
+        background-color: white !important;
+    }
+
+    .editor-panel {
+        display: none !important;
+    }
+
+    .preview-panel {
+        background: white !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+
+    .a4-page {
+        box-shadow: none !important;
+        margin: 0 auto !important;
+        width: 210mm !important;
+        padding: 25mm !important;
+        border: none !important;
+    }
+
+    .list-style li {
+        text-align: justify !important;
+    }
+}
